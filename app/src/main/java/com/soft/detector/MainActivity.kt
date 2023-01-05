@@ -2,27 +2,33 @@ package com.soft.detector
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.util.Size
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.Preview
+import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.common.Triangle
+import com.google.mlkit.vision.facemesh.FaceMeshDetection
+import com.google.mlkit.vision.facemesh.FaceMeshDetectorOptions
+import com.google.mlkit.vision.facemesh.FaceMeshPoint
 import com.soft.detector.databinding.ActivityMainBinding
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-
+@ExperimentalGetImage
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     val binding get() = requireNotNull(_binding)
 
     private var imageCapture: ImageCapture? = null
-
+    private val defaultDetector = FaceMeshDetection.getClient()
+    private val boundingBoxDetector = FaceMeshDetection.getClient(FaceMeshDetectorOptions.Builder().build())
     private lateinit var cameraExecutor: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
+
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
@@ -55,6 +62,42 @@ class MainActivity : AppCompatActivity() {
                     it.setSurfaceProvider(binding.previewView.surfaceProvider)
                 }
 
+            val imageAnalysis = ImageAnalysis.Builder()
+                .setTargetResolution(Size(1280, 720))
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .build()
+
+            imageAnalysis.setAnalyzer(cameraExecutor,ImageAnalysis.Analyzer { imageProxy ->
+                val mediaImage = imageProxy.image
+                if (mediaImage != null) {
+                    val image = InputImage.fromMediaImage(mediaImage, imageProxy.imageInfo.rotationDegrees)
+
+                    boundingBoxDetector.process(image)
+                        .addOnSuccessListener { faceMeshs ->
+                            for (faceMesh in faceMeshs) {
+                                val bounds: Rect = faceMesh.boundingBox
+
+                                val faceMeshpoints = faceMesh.allPoints
+                                faceMeshpoints.forEachIndexed { index, faceMeshPoint ->
+                                    val index: Int = index
+                                    val position = faceMeshPoint.position
+                                }
+
+                                val triangles: List<Triangle<FaceMeshPoint>> = faceMesh.allTriangles
+                                for (triangle in triangles) {
+                                    val connectedPoints = triangle.allPoints
+                                }
+                            }
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e(TAG, "startCamera: ${e.message}")
+                        }
+                }
+
+                imageProxy.close()
+            })
+
+
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -63,8 +106,8 @@ class MainActivity : AppCompatActivity() {
                 cameraProvider.unbindAll()
 
                 // Bind use cases to camera
-                cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview)
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview)
+                cameraProvider.bindToLifecycle(this, cameraSelector,imageAnalysis,preview)
 
             } catch(exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
