@@ -17,6 +17,7 @@ object Versions{
     const val fragmentKtx = "1.5.5"
     const val activityKtx = "1.6.1"
     const val navigation = "2.4.2"
+    const val safeArgs = "2.5.3"
 
 
     /**
@@ -51,7 +52,7 @@ object Libs{
     const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val navigationDynamicFeature = "androidx.navigation:navigation-dynamic-features-fragment:${Versions.navigation}"
-
+    const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgs}"
     /**
      * Test Libs
      */

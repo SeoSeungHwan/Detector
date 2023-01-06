@@ -1,37 +1,36 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "com.soft.detector"
+    namespace = "com.soft.home"
     compileSdk = AppConfig.compileSdk
 
     defaultConfig {
-        applicationId = "com.soft.detector"
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_1_8)
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = "1.8"
     }
-
     buildFeatures {
         viewBinding = true
         dataBinding = true
@@ -41,8 +40,6 @@ android {
 dependencies {
 
     implementation(project(":feature:base"))
-    implementation(project(":feature:faceMesh"))
-    implementation(project(":feature:home"))
     /**
      * Android Libs
      */
@@ -56,12 +53,4 @@ dependencies {
     implementation(Libs.viewmodelKtx)
     implementation(Libs.fragmentKtx)
     implementation(Libs.activityKtx)
-
-    /**
-     *  Test Libs
-     */
-
-    implementation(Libs.junit)
-    implementation(Libs.junitTest)
-    implementation(Libs.espressoCore)
 }

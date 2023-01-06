@@ -2,11 +2,20 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/faceMeshFragment">
+    app:startDestination="@id/homeFragment">
 
 
     <fragment
         android:id="@+id/faceMeshFragment"
         android:name="com.soft.facemesh.FaceMeshFragment"
         android:label="FaceMeshFragment" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.soft.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_faceMeshFragment"
+            app:destination="@id/faceMeshFragment" />
+    </fragment>
 </navigation>

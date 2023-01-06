@@ -4,9 +4,8 @@ import com.soft.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import javax.inject.Inject
 
-class FaceMeshViewModel @Inject constructor() : BaseViewModel(){
+class FaceMeshViewModel: BaseViewModel(){
 
     private val TAG = "HomeViewModel"
 

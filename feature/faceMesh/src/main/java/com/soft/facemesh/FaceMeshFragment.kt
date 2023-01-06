@@ -38,14 +38,6 @@ class FaceMeshFragment : BaseFragment<FragmentFaceMeshBinding, FaceMeshViewModel
     private val boundingBoxDetector = FaceMeshDetection.getClient(FaceMeshDetectorOptions.Builder().build())
     private lateinit var cameraExecutor: ExecutorService
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_face_mesh, container, false)
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -62,11 +54,9 @@ class FaceMeshFragment : BaseFragment<FragmentFaceMeshBinding, FaceMeshViewModel
     }
 
     override fun initDataBinding() {
-        TODO("Not yet implemented")
     }
 
     override fun initAfterBinding() {
-        TODO("Not yet implemented")
     }
 
     private fun checkPermuissions() {
