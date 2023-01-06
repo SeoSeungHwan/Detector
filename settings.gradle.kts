@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Detector"
 include (":app")
+include(":feature:faceMesh")
+include(":feature:base")

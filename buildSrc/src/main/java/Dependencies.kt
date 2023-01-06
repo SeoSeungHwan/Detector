@@ -11,6 +11,10 @@ object Versions{
     const val constraintLayout = "2.1.4"
     const val cameraX = "1.2.0"
     const val faceMeshDetection = "16.0.0-beta1"
+    const val coroutinesCore = "1.5.2"
+    const val coroutinesAndroid = "1.6.0"
+    const val viewmodelKtx = "2.4.0"
+    const val navigation = "2.4.2"
 
     /**
      * Test Libs
@@ -36,6 +40,13 @@ object Libs{
     const val cameraLifecycle = "androidx.camera:camera-lifecycle:${Versions.cameraX}"
     const val cameraView = "androidx.camera:camera-view:${Versions.cameraX}"
     const val cameraExtensinos = "androidx.camera:camera-extensions:${Versions.cameraX}"
+    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCore}"
+    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesAndroid}"
+    const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewmodelKtx}"
+    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    const val navigationDynamicFeature = "androidx.navigation:navigation-dynamic-features-fragment:${Versions.navigation}"
+
     /**
      * Test Libs
      */
