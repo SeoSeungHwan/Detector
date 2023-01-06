@@ -40,6 +40,7 @@ android {
 
 dependencies {
 
+    implementation(project(":feature:base"))
     /**
      * Android Libs
      */
@@ -47,6 +48,16 @@ dependencies {
     implementation(Libs.appCompat)
     implementation( Libs.material)
     implementation(Libs.constraintLayout)
+    implementation(Libs.navigationDynamicFeature)
+    implementation(Libs.navigationFragment)
+    implementation(Libs.navigationUiKtx)
+    implementation(Libs.viewmodelKtx)
+    implementation(Libs.fragmentKtx)
+    implementation(Libs.activityKtx)
+
+    /**
+     * CameraX
+     */
     implementation(Libs.faceMeshDetection)
     implementation(Libs.cameraCore)
     implementation(Libs.cameraCamera2)
@@ -60,5 +71,6 @@ dependencies {
     implementation(Libs.junit)
     implementation(Libs.junitTest)
     implementation(Libs.espressoCore)
+
 
 }

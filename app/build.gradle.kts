@@ -40,6 +40,9 @@ android {
 
 dependencies {
 
+    implementation(project(":feature:base"))
+    implementation(project(":feature:faceMesh"))
+
     /**
      * Android Libs
      */
@@ -47,12 +50,12 @@ dependencies {
     implementation(Libs.appCompat)
     implementation( Libs.material)
     implementation(Libs.constraintLayout)
-    implementation(Libs.faceMeshDetection)
-    implementation(Libs.cameraCore)
-    implementation(Libs.cameraCamera2)
-    implementation(Libs.cameraLifecycle)
-    implementation(Libs.cameraView)
-    implementation(Libs.cameraExtensinos)
+    implementation(Libs.navigationDynamicFeature)
+    implementation(Libs.navigationFragment)
+    implementation(Libs.navigationUiKtx)
+    implementation(Libs.viewmodelKtx)
+    implementation(Libs.fragmentKtx)
+    implementation(Libs.activityKtx)
 
     /**
      *  Test Libs

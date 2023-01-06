@@ -1,4 +1,4 @@
-package com.soft.detector
+package com.soft.facemesh
 
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy

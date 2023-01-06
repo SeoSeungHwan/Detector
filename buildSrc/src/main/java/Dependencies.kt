@@ -14,7 +14,10 @@ object Versions{
     const val coroutinesCore = "1.5.2"
     const val coroutinesAndroid = "1.6.0"
     const val viewmodelKtx = "2.4.0"
+    const val fragmentKtx = "1.5.5"
+    const val activityKtx = "1.6.1"
     const val navigation = "2.4.2"
+
 
     /**
      * Test Libs
@@ -43,6 +46,8 @@ object Libs{
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCore}"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesAndroid}"
     const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewmodelKtx}"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
+    const val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtx}"
     const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val navigationDynamicFeature = "androidx.navigation:navigation-dynamic-features-fragment:${Versions.navigation}"
