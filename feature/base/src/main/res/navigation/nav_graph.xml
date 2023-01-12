@@ -16,6 +16,8 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_faceMeshFragment"
-            app:destination="@id/faceMeshFragment" />
+            app:destination="@id/faceMeshFragment"
+            app:popExitAnim="@anim/exit_to_right"
+            app:enterAnim="@anim/enter_from_right"/>
     </fragment>
 </navigation>

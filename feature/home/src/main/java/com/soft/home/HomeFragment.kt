@@ -1,9 +1,11 @@
 package com.soft.home
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.soft.base.BaseFragment
 import com.soft.home.databinding.FragmentHomeBinding
+import kotlinx.coroutines.flow.collectLatest
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
 
@@ -21,12 +23,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     }
 
     override fun initDataBinding() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.navigationEvent.collectLatest {
+                when(it) {
+                    is HomeNavigationAction.NavigateToFaceMesh -> {
+                        findNavController().navigate(com.soft.base.R.id.action_homeFragment_to_faceMeshFragment)
+                    }
+                }
+            }
+        }
     }
 
     override fun initAfterBinding() {
-        binding.faceMeshBtn.setOnClickListener {
-            findNavController().navigate(com.soft.base.R.id.action_homeFragment_to_faceMeshFragment)
-        }
+
     }
 }
 
